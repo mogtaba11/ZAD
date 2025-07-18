@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>زاد المسلم</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(to top, #0f172a, #1e293b);
+      color: white;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    header {
+      padding: 15px;
+      text-align: left;
+      direction: ltr;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+    }
+
+    .tiktok-link {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 8px 14px;
+      border-radius: 10px;
+    }
+
+    main {
+      padding: 120px 20px 40px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .moon {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+
+    .tagline {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #cbd5e1;
+    }
+
+    .desc {
+      max-width: 500px;
+      margin: 0 auto 30px;
+      font-size: 18px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    /* زر الشراء */
+    .paypal-form button {
+      background: linear-gradient(to right, #3b82f6, #06b6d4);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      font-size: 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s, box-shadow 0.3s;
+      font-weight: bold;
+      margin: 30px auto 0;
+      display: block;
+      max-width: 320px;
+      width: 100%;
+      box-shadow: 0 5px 15px rgba(6, 182, 212, 0.7);
+    }
+
+    .paypal-form button:hover {
+      background: linear-gradient(to right, #06b6d4, #3b82f6);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.9);
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .tagline {
+        font-size: 18px;
+      }
+
+      .desc {
+        font-size: 16px;
+        padding: 12px;
+      }
+
+      .paypal-form button {
+        font-size: 20px;
+        padding: 14px 30px;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <header>
+    <a href="https://www.tiktok.com/@abu.zaid057" target="_blank" class="tiktok-link">تابعنا على TikTok</a>
+  </header>
+
+  <main>
+    <img src="https://media.discordapp.net/attachments/1100157826174812251/1395781514364457020/ChatGPT_Image_Jul_12_2025_10_36_57_PM.png?ex=687bb255&is=687a60d5&hm=193d0dd9c388160bb53b53997a0a8f08dfbca10852aa2d127f6124c214f46ee0&=&format=webp&quality=lossless&width=805&height=805" alt="هلال" class="moon" />
+    <h1>زاد المسلم</h1>
+    <p class="tagline">خير رقمي لا ينفد</p>
+    <p class="desc">كتيب أدعية نافعة للتوفيق والرزق والبركة، بتصميم أنيق يمكنك الاحتفاظ به رقميًا أو طباعته.</p>
+
+    <!-- صورة المنتج -->
+    <div style="margin: 20px 0;">
+      <img src="https://media.discordapp.net/attachments/1100157826174812251/1395785074687082546/image.png?ex=687bb5a6&is=687a6426&hm=84caae820f6e37057e63ed713c94f98841a49ae9086fbfe35f701a4f127b60df&=&format=webp&quality=lossless&width=466&height=723" alt="صورة المنتج" style="max-width: 100%; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.4);" />
+    </div>
+
+    <!-- زر الشراء -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="paypal-form">
+      <input type="hidden" name="cmd" value="_xclick" />
+      <input type="hidden" name="business" value="ml0570333@gmail.com" />
+      <input type="hidden" name="item_name" value="كتيب أدعية زاد المسلم" />
+      <input type="hidden" name="amount" value="5" />
+      <input type="hidden" name="currency_code" value="USD" />
+
+      <!-- توجيه العميل بعد الدفع لرابط التحميل المباشر -->
+      <input type="hidden" name="return" value="https://drive.google.com/uc?export=download&id=19j9ggC-SZ0byHMikW5QrsgPaE3l5pEIU" />
+
+      <button type="submit"> اشتري الآن بـ 5 دولار</button>
+    </form>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particlesArray = [];
+    const colors = ["#10b981", "#06b6d4", "#3b82f6", "#9333ea"];
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    class Particle {
+      constructor(x, y, directionX, directionY, size, color) {
+        this.x = x;
+        this.y = y;
+        this.directionX = directionX;
+        this.directionY = directionY;
+        this.size = size;
+        this.color = color;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+
+      update() {
+        this.x += this.directionX;
+        this.y += this.directionY;
+
+        if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+          this.directionX = -this.directionX;
+        }
+        if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+          this.directionY = -this.directionY;
+        }
+
+        this.draw();
+      }
+    }
+
+    function init() {
+      particlesArray.length = 0;
+      for (let i = 0; i < 70; i++) {
+        let size = Math.random() * 3 + 1;
+        let x = Math.random() * (canvas.width - size * 2);
+        let y = Math.random() * (canvas.height - size * 2);
+        let directionX = (Math.random() - 0.5) * 1.5;
+        let directionY = (Math.random() - 0.5) * 1.5;
+        let color = colors[Math.floor(Math.random() * colors.length)];
+
+        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+      }
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach((p) => p.update());
+    }
+
+    init();
+    animate();
+  </script>
+</body>
+</html>
